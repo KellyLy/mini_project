@@ -3,6 +3,8 @@ const path = require('path')
 const config = require('./config')
 
 const app = express()
+const http = require('http').Server(app)
+global.io = require('socket.io')(http);
 
 app.set('env', config.env)
 
@@ -10,6 +12,11 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 app.disable('x-powered-by')
+
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 const staticPath = path.join(__dirname, 'public')
 app.use('/static', express.static(staticPath))
@@ -29,4 +36,14 @@ app.use(require('./middlewares/unused-route-handler'))
 // 服务器内部异常错误处理
 app.use(require('./middlewares/internal-server-error-handler'))
 
-module.exports = app
+//Webscoket支持
+io.on( "connection", function( socket ){
+    socket.on("join", function (user_name){
+        this.join(user_name)
+    })
+});
+io.sendMsgTo = function (user_name, msg){
+    this.sockets.to( user_name ).emit("message", msg);
+}
+
+module.exports = http

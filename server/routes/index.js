@@ -1,3 +1,5 @@
 module.exports = {
-    '/address': '/address/routehub'
+    '/address': '/address/routehub',
+    '/chat': '/chat/routehub'
+    
 }

@@ -5,7 +5,7 @@ module.exports = (req, res, next) => {
         'url': req.originalUrl,
         'method': method,
         'content-type': req.get('Content-Type'),
-        'body': method === 'POST' ? req.body : void(0),
+        'body': req.method.toUpperCase() === 'POST' ? req.body : void(0),
         'cookies': req.cookies,
         'referer': req.headers.referer,
     })
