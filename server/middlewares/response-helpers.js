@@ -2,7 +2,7 @@ module.exports = (req, res, next) => {
     // 记录请求开始时间
     let beginTime = Date.now()
 
-    _.each(['json, send'], function(fn) {
+    _.each(['json', 'send'], function(fn) {
         res['$' + fn] = (body) => {
 
             // 调用`res`原始方法
@@ -32,7 +32,7 @@ module.exports = (req, res, next) => {
         // 计算请求耗时
         let timeCost = Date.now() - beginTime
 
-        let logInfo = 'page => ' + JSON.stringify({
+        let logInfo = 'render page => ' + JSON.stringify({
             'url': req.originalUrl,
             'method': req.method,
             'content-type': res.get('Content-Type'),

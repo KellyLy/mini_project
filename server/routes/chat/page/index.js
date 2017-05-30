@@ -1,6 +1,5 @@
 const PageCgiBase = require('../../pageCgiBase')
 
-// 地区列表页面渲染
 class Index extends PageCgiBase {
     constructor() {
         super(...arguments)

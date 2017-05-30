@@ -16,7 +16,7 @@ global.Guest = {
   openId:"winys2",
   icon:""
 }
-/* eslint-disable no-new */
+
 new Vue({
   el: '#app',
   template: '<App/>',

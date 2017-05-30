@@ -1,4 +1,5 @@
 const PageCgiBase = require('../../pageCgiBase')
+const addressModel = require('../../../models/address/index')
 
 // 地区列表页面渲染
 class AddressListPage extends PageCgiBase {
