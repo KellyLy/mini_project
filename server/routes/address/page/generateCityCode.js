@@ -11,11 +11,12 @@ class GenerateCityCode extends PageCgiBase {
 
     handle() {
         const _this = this
-        fs.exists(SERVER_ROOT + '/cityCode.json', function(exists) {  
-            if(!exists){
+        fs.exists(SERVER_ROOT + '/cityCode.json', function(exists) {
+            if (!exists) {
                 _this.res.$send('正在后台生成城市编号文件，请稍候再访问吧 ~')
                 addressModel.generateCityCode()
             } else {
+                _this.res.setHeader('Content-Type', 'application/json;charset=utf-8')
                 _this.res.sendFile(SERVER_ROOT + '/cityCode.json')
             }
         })

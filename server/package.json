@@ -1,25 +1,25 @@
 {
-  "name": "mini_project",
-  "version": "1.0.0",
-  "main": "app.js",
-  "scripts": {
-    "start": "pm2 start startup/startup.js",
-    "reload": "pm2 reload startup/startup.js",
-    "stop": "pm2 stop all",
-    "monit": "pm2 monit",
-    "local": "node startup/startup.js --env=local"
-  },
-  "license": "MIT",
-  "author": "lakelin",
-  "dependencies": {
-    "async": "^2.4.1",
-    "babel-core": "^6.24.1",
-    "body-parser": "^1.17.2",
-    "cheerio": "^1.0.0-rc.1",
-    "ejs": "^2.5.6",
-    "express": "^4.15.3",
-    "minimist": "^1.2.0",
-    "node-fetch": "^1.7.0",
-    "socket.io": "^2.0.1"
-  }
+    "name": "mini_project",
+    "version": "1.0.0",
+    "main": "app.js",
+    "scripts": {
+        "start": "pm2 start startup/startup.js",
+        "reload": "pm2 reload startup/startup.js",
+        "stop": "pm2 stop all",
+        "monit": "pm2 monit",
+        "local": "nodemon startup/startup.js --env=local"
+    },
+    "license": "MIT",
+    "author": "lakelin",
+    "dependencies": {
+        "async": "^2.4.1",
+        "babel-core": "^6.24.1",
+        "body-parser": "^1.17.2",
+        "cheerio": "^1.0.0-rc.1",
+        "ejs": "^2.5.6",
+        "express": "^4.15.3",
+        "minimist": "^1.2.0",
+        "node-fetch": "^1.7.0",
+        "socket.io": "^2.0.1"
+    }
 }
