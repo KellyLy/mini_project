@@ -13,7 +13,7 @@ class Search extends PageCgiBase {
             const cityCode = this.req.query.cityCode
             const keyword = this.req.query.keyword
             const pageNum = this.req.query.pageNum || 1
-            resolve(addressModel.search(cityCode,keyword,pageNum))
+            resolve(addressModel.search(cityCode, keyword, pageNum))
         }).then(result => {
             this.res.$json(result)
         }).catch(err => console.log(err))

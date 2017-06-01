@@ -1,77 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>大众点评搜索结果</title>
-    <link rel="stylesheet" href="/static/address/swiper-3.4.2.min.css">
-    <style>
-        html, body {
-            position: relative;
-            height: 100%;
-        }
-        body {
-            background: #eee;
-            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-            font-size: 14px;
-            color:#000;
-            margin: 0;
-            padding: 0;
-        }
-        .swiper-container {
-            width: 100%;
-            height: 100%;
-        }
-        .swiper-slide {
-            text-align: center;
-            font-size: 18px;
-            background: #fff;
-            
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-        }
-    </style>
-</head>
-<body>
-    <div class="address_list_wrap swiper-container">
-        <ul class="address_list swiper-wrapper">
-            <% if(search_data.code == 0 && search_data.data.length){ %>
-                <% for(let address of search_data.data){ %>
-                    <li class="address_item swiper-slide">
-                        <img src="<%= address.addressImg %>">
-                        <div class="address_intro">
-                            <span class="addressName"><%= address.addressName %><span>
-                            <span class="starLevel"><%= address.starLevel %><span>
-                            <span class="addressDetail"><%= address.addressDetail %><span>
-                        <div>
-                    <li>
-                <% } %>
-            <% } else { %>
-                <li>抱歉哦 ~ 暂时还没有相符合的地点<li>
-            <% } %>
-        </ul>
+
+        <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                <title>大众点评搜索结果</title>
+                <link rel="stylesheet" href="/static/address/swiper-3.4.2.min.css">
+                <style>
+                        html,
+                        body {
+                                position: relative;
+                                height: 100%;
+                        }
+                        
+                        body {
+                                background: #eee;
+                                font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+                                font-size: 14px;
+                                color: #000;
+                                margin: 0;
+                                padding: 0;
+                        }
+                        
+                        .swiper-container {
+                                width: 100%;
+                                height: 100%;
+                        }
+                        
+                        .address_list_wrap li {
+                                list-style: none;
+                        }
+                        
+                        .swiper-slide {
+                                text-align: center;
+                                font-size: 18px;
+                                background: #fff;
+                                display: -webkit-box;
+                                display: -ms-flexbox;
+                                display: -webkit-flex;
+                                display: flex;
+                                -webkit-box-pack: center;
+                                -ms-flex-pack: center;
+                                -webkit-justify-content: center;
+                                justify-content: center;
+                                -webkit-box-align: center;
+                                -ms-flex-align: center;
+                                -webkit-align-items: center;
+                                align-items: center;
+                        }
+                        
+                        .address_item .item {
+                                width: 100%;
+                                overflow: hidden;
+                                position: relative;
+                                cursor: pointer;
+                        }
+                        
+                        .address_item .item:focus {
+                                outline: none;
+                        }
+                        
+                        .address_item .item img {
+                                max-height: 100%;
+                                width: 100%;
+                        }
+                        
+                        .address_intro {
+                                position: absolute;
+                                bottom: 6px;
+                                color: #e7e4e4;
+                                background-color: rgba(0, 0, 0, 0.7);
+                                width: 100%;
+                                text-align: left;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                padding: 5px;
+                                overflow: hidden;
+                                box-sizing: border-box;
+                        }
+                        
+                        .address_item .item:focus .addressDetail {
+                                display: block;
+                        }
+                        
+                        .addressName {
+                                color: #f7f7f7;
+                                font-size: 1rem;
+                                font-family: '黑体';
+                                display: block;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                        }
+                        
+                        .starLevel {
+                                font-size: .8rem;
+                                color: #ff9303;
+                        }
+                        
+                        .addressDetail {
+                                display: none;
+                                white-space: initial;
+                                font-size: .8rem;
+                                max-height: 3.3rem;
+                        }
+                </style>
+        </head>
+
+        <body>
+                <div class="address_list_wrap swiper-container">
+                        <ul class="address_list swiper-wrapper">
+                                <% if(search_data.code == 0 && search_data.data.length){ %>
+                                        <% for(let address of search_data.data){ %>
+                                                <li class="address_item swiper-slide">
+                                                        <div class="item" tabindex="-1">
+                                                                <img src="<%= address.addressImg %>">
+                                                                <div class="address_intro">
+                                                                        <span class="addressName"><%= address.addressName %></span>
+                                                                        <span class="starLevel"><%= address.starLevel %></span>
+                                                                        <span class="addressDetail"><%= address.addressDetail %><span>
+                                                                <div>
+                                                        </div>
+                                                <li>
+                                        <% } %>
+                                <% } else { %>
+                                                <li>抱歉哦 ~ 暂时还没有相符合的地点<li>
+                                <% } %>
+                        </ul>
         <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
+        <!--<div class="swiper-pagination"></div>-->
     </div>
 </body>
-<script src="/static/address/swiper-3.4.2.min.css"></script>
+<script src="/static/address/swiper-3.4.2.min.js"></script>
 <script>
     const swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
-        slidesPerView: 3,
-        paginationClickable: true,
-        spaceBetween: 30
+        slidesPerView: 3.5,
+        paginationClickable: false,
+        spaceBetween: 5
     })
 </script>
 </html>

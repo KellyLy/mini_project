@@ -35,13 +35,13 @@ app.use(require('./middlewares/unused-route-handler'))
 app.use(require('./middlewares/internal-server-error-handler'))
 
 // Webscoket支持
-io.on( "connection", function( socket ){
-    socket.on("join", function (user_name){
+io.on("connection", function(socket) {
+    socket.on("join", function(user_name) {
         this.join(user_name)
     })
 })
-io.sendMsgTo = function (user_name, msg){
-    this.sockets.to( user_name ).emit("message", msg)
+io.sendMsgTo = function(user_name, msg) {
+    this.sockets.to(user_name).emit("message", msg)
 }
 
 module.exports = http
